@@ -10,6 +10,7 @@ const theme = {
     info: '#FFF4EA'
   },
   font: {
+    small: 10,
     normal: 14,
     large: 18,
     larger: 24

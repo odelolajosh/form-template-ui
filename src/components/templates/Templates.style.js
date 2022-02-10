@@ -46,3 +46,36 @@ export const Spinner = styled.span`
     }
   }
 `
+
+export const Pagination = styled.div`
+  width: 800px;
+  max-width: calc(100% - 20px);
+  display: flex;
+  justify-content: space-between;
+  margin: 72px auto 400px auto;
+  font-size: ${props => props.theme.font.large}px;
+`
+
+export const Paginate = styled.span`
+  display: flex;
+  align-items: center;
+
+  & > span {
+    background: #FFFFFF;
+    border: 1px solid #3F3F3F;
+    border-radius: 3px;
+    padding: 4px 11px;
+    margin-right: 12px;
+  }
+`
+
+export const PaginateAction = styled.span`
+  font-weight: 500;
+  font-size: ${props => props.theme.font.large}px;
+  cursor: pointer;
+  user-select: none;
+
+  & > span {
+    margin-left: 12px;
+  }
+`

@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
+import { RightCaretIcon } from "../../assets/svg";
 import usePagination from "../../hooks/usePagination";
 import { selectStatus, selectTemplates } from "../../store/template/templateSlice";
 import TemplateCard from "./TemplateCard";
-import { LoadingTemplate, Spinner, TemplateGrid, TemplatesInfo } from "./Templates.style";
+import { LoadingTemplate, Paginate, PaginateAction, Pagination, Spinner, TemplateGrid, TemplatesInfo } from "./Templates.style";
 
 const Templates = () => {
   const templates = useSelector(selectTemplates)
   const status = useSelector(selectStatus)
 
-  const [data] = usePagination(templates, 1, 15)
-  console.log({ data })
+  const [data, page, totalPages, prevPage, nextPage] = usePagination(templates)
 
   if (status === 'loading') {
     return (<LoadingTemplate>
@@ -24,10 +24,15 @@ const Templates = () => {
         <small>{templates.length} templates</small>
       </TemplatesInfo>
       <TemplateGrid>
-        {
-          data.map((template, index) => <TemplateCard key={index} {...template} />)
-        }
+        {data.map((template, index) => <TemplateCard key={index} {...template} />)}
       </TemplateGrid>
+      <Pagination>
+        <PaginateAction onClick={prevPage}>Previous</PaginateAction>
+        <Paginate>
+          <span>{page}</span> of {totalPages}
+        </Paginate>
+        <PaginateAction onClick={nextPage}>Next <span><RightCaretIcon /></span></PaginateAction>
+      </Pagination>
     </div>
   )
 }

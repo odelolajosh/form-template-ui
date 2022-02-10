@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const TopbarWrapper = styled.section`
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 `
 
 export const SearchBox = styled.section`
@@ -23,5 +25,17 @@ export const SearchBox = styled.section`
     width: 46px;
     display: grid;
     place-items: center;
+  }
+`
+
+export const FilterSection = styled.div`
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  & > span:nth-child(1) {
+    color: #989898;
+    text-transform: capitalize;
   }
 `

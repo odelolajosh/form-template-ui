@@ -5,6 +5,21 @@
   margin-top: 79px;
 }
 
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: white;
+  padding: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #252525;
+  border-radius: 10px;
+  border: 3px solid white;
+}
+
 * {
   box-sizing: border-box;
 }
