@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
-import './assets/fonts/font.css'
+import './assets/fonts/font.css';
 import './App.css';
+import { useDispatch } from 'react-redux';
 import { Topbar, Info, Templates } from './components';
 import { getAllTemplates } from './store/template/templateSlice';
-import { useDispatch } from 'react-redux';
-
 
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllTemplates())
-  }, [dispatch])
+    dispatch(getAllTemplates());
+  }, [dispatch]);
   return (
     <div className="App">
       <Topbar />

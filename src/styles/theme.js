@@ -7,14 +7,14 @@ const theme = {
     placeholder: '#8F8B8B',
     success: '#08BD37',
     warning: '#FC830A',
-    info: '#FFF4EA'
+    info: '#FFF4EA',
   },
   font: {
     small: 10,
     normal: 14,
     large: 18,
-    larger: 24
-  }
-}
+    larger: 24,
+  },
+};
 
 export default theme;

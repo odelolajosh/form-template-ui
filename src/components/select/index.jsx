@@ -1,33 +1,37 @@
-import { useEffect, useRef, useState } from 'react'
-import styled from 'styled-components'
-import { CaretIcon } from '../../assets/svg'
+/* eslint-disable react/forbid-prop-types */
+import PropType from 'prop-types';
+import { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
+import { CaretIcon } from '../../assets/svg';
 
-const Select = ({ items, defaultIndex=0, onSelect=null, label }) => {
-  const [visible, setVisible] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(defaultIndex)
-  const input = useRef()
+function Select({
+  items, defaultIndex = 0, onSelect = null, label = 'label',
+}) {
+  const [visible, setVisible] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(defaultIndex);
+  const input = useRef();
 
   useEffect(() => {
     const listener = window.addEventListener('click', (e) => {
       if (visible) {
         if (input && input.current && !input.current.contains(e.target)) {
-          setVisible(false)
+          setVisible(false);
         }
       }
     });
 
     return () => {
-      window.removeEventListener('click', listener)
-    }
-  }, [visible])
+      window.removeEventListener('click', listener);
+    };
+  }, [visible]);
 
-  const toggle = () => setVisible((visible) => !visible)
+  const toggle = () => setVisible((v) => !v);
 
   const selectIndex = (index) => {
-    setSelectedIndex(index)
-    setVisible(false)
-    onSelect && onSelect(index)
-  }
+    setSelectedIndex(index);
+    setVisible(false);
+    onSelect && onSelect(index);
+  };
   return (
     <SelectWrapper>
       <SelectInput ref={input} onClick={toggle} isShown={visible}>
@@ -38,20 +42,34 @@ const Select = ({ items, defaultIndex=0, onSelect=null, label }) => {
       {items && (
         <Dropdown show={visible}>
           {items.map((item, index) => (
-            <div key={`slt-${item}-${index}`} tabIndex={index} onClick={() => selectIndex(index)}>{item}</div>
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+            <div key={`slt-${item}`} role="menuitem" tabIndex={index} onClick={() => selectIndex(index)}>{item}</div>
           ))}
         </Dropdown>
       )}
     </SelectWrapper>
-  )
+  );
 }
+
+Select.propTypes = {
+  items: PropType.array.isRequired,
+  defaultIndex: PropType.number,
+  onSelect: PropType.func,
+  label: PropType.string,
+};
+
+Select.defaultProps = {
+  onSelect: null,
+  label: 'label',
+  defaultIndex: 0,
+};
 
 const SelectWrapper = styled.span`
   height: 39px;
   width: 160px;
   cursor: pointer;
   position: relative;
-`
+`;
 
 const SelectInput = styled.div`
 position: relative;
@@ -65,14 +83,15 @@ border: 0.5px solid #C4C4C4;
 border-radius: 2px;
 color: #3F3F3F;
 z-index: 2;
+text-transform: capitalize;
 
 & > label {
     text-transform: capitalize;
     position: absolute;
     top: -6.5px;
     left: 23px;
-    font-size: ${props => props.theme.font.small}px;
-    color: ${props => props.theme.colors.placeholder};
+    font-size: ${(props) => props.theme.font.small}px;
+    color: ${(props) => props.theme.colors.placeholder};
     background: white;
     padding-inline: 3px;
   }
@@ -86,8 +105,8 @@ z-index: 2;
     display: grid;
     place-items: center;
     transition: transform 300ms ease-in-out;
-    ${({ isShown=false }) => isShown && 'transform: rotate(180deg)'};
-  }`
+    ${({ isShown = false }) => isShown && 'transform: rotate(180deg)'};
+  }`;
 
 const Dropdown = styled.div`
   position: absolute;
@@ -100,7 +119,7 @@ const Dropdown = styled.div`
   transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
   transform: translateY(-39px);
   opacity: 0;
-  ${({ show=false }) => show && `
+  ${({ show = false }) => show && `
     transform: translateY(0);
     opacity: 1;
   `}
@@ -123,6 +142,6 @@ const Dropdown = styled.div`
       border: 0.5px solid #C4C4C4;
     }
   }
-`
+`;
 
 export default Select;

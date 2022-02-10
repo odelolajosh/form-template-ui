@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import PropType from 'prop-types';
+import styled from 'styled-components';
 
-const TemplateCard = ({ name, description }) => {
+function TemplateCard({ name, description, link }) {
   return (
     <Template>
       <div>
@@ -8,11 +9,17 @@ const TemplateCard = ({ name, description }) => {
         <TemplateText>{ description }</TemplateText>
       </div>
       <TemplateBottom>
-        <a href=".">Use Template</a>
+        <a href={link}>Use Template</a>
       </TemplateBottom>
     </Template>
-  )
+  );
 }
+
+TemplateCard.propTypes = {
+  name: PropType.string.isRequired,
+  description: PropType.string.isRequired,
+  link: PropType.string.isRequired,
+};
 
 const Template = styled.div`
   height: 229px;
@@ -25,11 +32,11 @@ const Template = styled.div`
   & > div:nth-child(1) {
     flex: 1;
   }
-`
+`;
 
 const TemplateHeader = styled.h3`
-  font-size: ${props => props.theme.font.larger}px;
-  color: ${props => props.theme.colors.text};
+  font-size: ${(props) => props.theme.font.larger}px;
+  color: ${(props) => props.theme.colors.text};
   font-weight: 500;
   margin: 19px;
   margin-top: 17px;
@@ -38,11 +45,18 @@ const TemplateHeader = styled.h3`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;  
   overflow: hidden;
-`
+`;
 
 const TemplateText = styled.p`
-  font-size: ${props => props.theme.font.normal}px;
-  color: ${props => props.theme.colors.header};
+  font-size: ${(props) => props.theme.font.normal}px;
+  font-family: 'Inter';
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: ${(props) => props.theme.colors.header};
   margin: 19px;
   padding: 0;
   display: -webkit-box;
@@ -50,7 +64,7 @@ const TemplateText = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;  
   overflow: hidden;
-`
+`;
 
 const TemplateBottom = styled.div`
   padding: 11px 22px;
@@ -58,8 +72,8 @@ const TemplateBottom = styled.div`
 
   & > a {
     text-decoration: none;
-    color: ${props => props.theme.colors.success};
+    color: ${(props) => props.theme.colors.success};
   }
-`
+`;
 
 export default TemplateCard;

@@ -1,11 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const TopbarWrapper = styled.section`
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
-`
+  padding-inline: 18px;
+`;
 
 export const SearchBox = styled.section`
   position: relative;
@@ -26,7 +27,7 @@ export const SearchBox = styled.section`
     display: grid;
     place-items: center;
   }
-`
+`;
 
 export const FilterSection = styled.div`
   display: flex;
@@ -38,4 +39,4 @@ export const FilterSection = styled.div`
     color: #989898;
     text-transform: capitalize;
   }
-`
+`;
