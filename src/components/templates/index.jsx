@@ -1,4 +1,5 @@
 /* eslint-disable react/no-array-index-key */
+import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { RightCaretIcon } from '../../assets/svg';
 import usePagination from '../../hooks/usePagination';
@@ -15,7 +16,19 @@ function Templates() {
   const filters = useSelector(selectFilters);
   const status = useSelector(selectStatus);
 
+  const scroll = useRef();
+
   const [data, page, totalPages, prevPage, nextPage] = usePagination(templates);
+
+  const toPrevPage = () => {
+    prevPage();
+    scroll?.current?.scrollTo(0, 0);
+  };
+
+  const toNextPage = () => {
+    nextPage();
+    scroll?.current?.scrollTo(0, 0);
+  };
 
   if (status === 'loading') {
     return (
@@ -40,19 +53,19 @@ function Templates() {
           {filters.category !== Filter.DEFAULT && ' found'}
         </small>
       </TemplatesInfo>
-      <TemplateScroll>
+      <TemplateScroll ref={scroll}>
         <TemplateGrid>
           {data.map((template, index) => <TemplateCard key={`template-card-${index}`} {...template} />)}
         </TemplateGrid>
         <Pagination>
-          <PaginateAction onClick={prevPage}>Previous</PaginateAction>
+          <PaginateAction onClick={toPrevPage}>Previous</PaginateAction>
           <Paginate>
             <span>{page}</span>
             of
             {' '}
             {totalPages}
           </Paginate>
-          <PaginateAction onClick={nextPage}>
+          <PaginateAction onClick={toNextPage}>
             Next
             <span><RightCaretIcon /></span>
           </PaginateAction>
