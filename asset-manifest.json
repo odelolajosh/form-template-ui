@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/form-template-ui/static/css/main.7405056a.css",
-    "main.js": "/form-template-ui/static/js/main.fc1fb36d.js",
+    "main.js": "/form-template-ui/static/js/main.6b0091d5.js",
     "static/media/Inter-Regular.ttf": "/form-template-ui/static/media/Inter-Regular.2391725004ae05a27e8e.ttf",
     "static/media/CircularStd-Book.ttf": "/form-template-ui/static/media/CircularStd-Book.ce1731670f4779d9c951.ttf",
     "static/media/CircularStd-Bold.otf": "/form-template-ui/static/media/CircularStd-Bold.5c4514a8399ec0064b9b.otf",
     "index.html": "/form-template-ui/index.html",
     "main.7405056a.css.map": "/form-template-ui/static/css/main.7405056a.css.map",
-    "main.fc1fb36d.js.map": "/form-template-ui/static/js/main.fc1fb36d.js.map"
+    "main.6b0091d5.js.map": "/form-template-ui/static/js/main.6b0091d5.js.map"
   },
   "entrypoints": [
     "static/css/main.7405056a.css",
-    "static/js/main.fc1fb36d.js"
+    "static/js/main.6b0091d5.js"
   ]
 }
