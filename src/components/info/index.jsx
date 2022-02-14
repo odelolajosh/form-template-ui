@@ -15,12 +15,15 @@ const InfoParagraph = styled.p`
   padding: 14px;
   border-radius: 2px;
   margin-top: 45px; // 85px
-  margin-bottom: 43px; // 63px
   margin-inline: 18px;
   align-items: center;
   display: flex;
   justify-content: center;
   color: #252525;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 
   & > span {
     margin-right: 10px;

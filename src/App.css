@@ -4,7 +4,7 @@
   /* overflow: hidden; */
   max-width: 100vw;
   margin: auto;
-  padding-top: 79px;
+  padding-top: 59px; /* 79px */
   display: flex;
   flex-flow: column nowrap;
 }

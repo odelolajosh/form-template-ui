@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { useSelector } from 'react-redux';
 import { RightCaretIcon } from '../../assets/svg';
 import usePagination from '../../hooks/usePagination';

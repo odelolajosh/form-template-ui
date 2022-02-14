@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const usePagination = (data = [], initialPage = 1, limit = 15) => {
+const usePagination = (data = [], initialPage = 1, limit = 30) => {
   const [result, setResult] = useState([]);
   const [page, setPage] = useState(initialPage);
   const [totalPages, setTotalPages] = useState(0);

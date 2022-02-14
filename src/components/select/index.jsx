@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/forbid-prop-types */
 import PropType from 'prop-types';
 import { useEffect, useRef, useState } from 'react';
@@ -12,16 +13,17 @@ function Select({
   const input = useRef();
 
   useEffect(() => {
-    const listener = window.addEventListener('click', (e) => {
+    const fn = (e) => {
       if (visible) {
         if (input && input.current && !input.current.contains(e.target)) {
           setVisible(false);
         }
       }
-    });
+    };
+    window.addEventListener('click', fn);
 
     return () => {
-      window.removeEventListener('click', listener);
+      window.removeEventListener('click', fn);
     };
   }, [visible]);
 
@@ -33,7 +35,7 @@ function Select({
     onSelect && onSelect(index);
   };
   return (
-    <SelectWrapper>
+    <SelectWrapper className="slt-elem">
       <SelectInput ref={input} onClick={toggle} isShown={visible}>
         <label>{label}</label>
         {items[selectedIndex].toString()}
@@ -69,6 +71,7 @@ const SelectWrapper = styled.span`
   width: 160px;
   cursor: pointer;
   position: relative;
+  background: white;
 `;
 
 const SelectInput = styled.div`
@@ -82,7 +85,7 @@ align-items: center;
 border: 0.5px solid #C4C4C4;
 border-radius: 2px;
 color: #3F3F3F;
-z-index: 2;
+${'' /* z-index: 2; */}
 text-transform: capitalize;
 
 & > label {
@@ -117,11 +120,13 @@ const Dropdown = styled.div`
   border-radius: 2px;
   background: white;
   transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
-  transform: translateY(-39px);
+  transform: translateY(-10px);
   opacity: 0;
+  visibility: hidden;
   ${({ show = false }) => show && `
     transform: translateY(0);
     opacity: 1;
+    visibility: visible;
   `}
   z-index: 1;
 

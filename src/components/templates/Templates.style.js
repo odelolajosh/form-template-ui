@@ -5,6 +5,13 @@ export const TemplatesInfo = styled.section`
   justify-content: space-between;
   align-items: center;
   padding-inline: 18px;
+  margin-bottom: 8px;
+
+  @media (max-width: 410px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 
   & > span {
     color: ${(props) => props.theme.colors.text};
@@ -37,6 +44,7 @@ export const TemplateWrapper = styled.div.attrs({
   height: 100%;
   overflow: hidden;
   flex: 1;
+  margin-top: 43px; // 63px
 `;
 
 export const TemplateScroll = styled.div.attrs({

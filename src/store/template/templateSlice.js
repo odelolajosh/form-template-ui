@@ -32,7 +32,7 @@ export const getAllTemplates = createAsyncThunk(
       throw Error('Cannot fetch templates');
     } catch (err) {
       console.log(err.message);
-      return null;
+      return [];
     }
   },
 );
