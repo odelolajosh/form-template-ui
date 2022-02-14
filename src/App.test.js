@@ -1,15 +1,19 @@
-import React from 'react';
 import { render } from '@testing-library/react';
+import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { ThemeProvider } from 'styled-components';
 import App from './App';
+import store from './store';
+import { theme } from './styles';
 
-test('renders learn react link', () => {
-  const { getByText } = render(
+test('renders search input', () => {
+  const { getByPlaceholderText } = render(
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
     </Provider>,
   );
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+  expect(getByPlaceholderText(/Search Templates/i)).toBeInTheDocument();
 });

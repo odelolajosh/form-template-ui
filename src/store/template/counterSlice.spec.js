@@ -1,33 +1,38 @@
-import counterReducer, {
-  increment,
-  decrement,
-  incrementByAmount,
-} from './counterSlice';
+import { ALL_CATEGORY, Filter } from './templateFilter';
+import templateReducer, { setFilters } from './templateSlice';
 
-describe('counter reducer', () => {
-  const initialState = {
-    value: 3,
-    status: 'idle',
-  };
+const initialState = {
+  value: [],
+  status: 'idle',
+  filters: {
+    category: ALL_CATEGORY,
+    date: Filter.DEFAULT,
+    order: Filter.DEFAULT,
+    search: '',
+  }
+};
+
+describe('template reducer', () => {
   it('should handle initial state', () => {
-    expect(counterReducer(undefined, { type: 'unknown' })).toEqual({
-      value: 0,
+    expect(templateReducer(undefined, { type: 'unknown' })).toEqual({
+      value: [],
       status: 'idle',
+      filters: {
+        category: ALL_CATEGORY,
+        date: Filter.DEFAULT,
+        order: Filter.DEFAULT,
+        search: '',
+      },
     });
   });
 
-  it('should handle increment', () => {
-    const actual = counterReducer(initialState, increment());
-    expect(actual.value).toEqual(4);
-  });
-
-  it('should handle decrement', () => {
-    const actual = counterReducer(initialState, decrement());
-    expect(actual.value).toEqual(2);
-  });
-
-  it('should handle incrementByAmount', () => {
-    const actual = counterReducer(initialState, incrementByAmount(2));
-    expect(actual.value).toEqual(5);
+  it('should handle filter change', () => {
+    const actual = templateReducer(initialState, setFilters({ category: 'education', order: Filter.ASCENDING }));
+    expect(actual.filters).toEqual({
+      category: 'education',
+      date: Filter.DEFAULT,
+      order: Filter.ASCENDING,
+      search: '',
+    });
   });
 });
